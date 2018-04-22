@@ -1,0 +1,61 @@
+body{
+background-image: url("../Ima/a.png");
+width: 100%;
+height: 100%;
+margin-top: 0px;
+padding: 0px;
+background-attachment:fixed;
+}
+#titulo{
+position:relative;
+color: yellow;	
+text-align: center;
+}
+#quienes_somos{
+width: 400px;
+height: 200px;
+position:relative;
+background-color: rgba(255, 0, 0, 0.3);	
+color: white;
+}
+#loginss{
+position:relative;
+left: 425px;
+bottom: 200px;
+width: 200px;
+height: 145px;
+background-color: rgba(119,200,152,0.6);
+color: white;
+}
+#registro{
+position:relative;
+left: 660px;
+bottom: 350px;
+width: 335px;
+height: 150px;
+background-color: rgba(60,23,152,0.6);
+color:white;
+}
+#shana{
+background-color: blue;
+position: relative;
+width: 600px;
+height:200px;
+bottom: 500px;
+left: 1050px;
+}
+#cs{
+	position:relative;
+	width:600px;
+	height:600px;
+    left:1050px;
+	bottom: 280px;
+	}
+#ss{
+	width:600px; 
+	height:600px;
+}
+#ss:hover{
+	width:800px; 
+	height:800px;
+}

@@ -1,0 +1,13 @@
+use registro;
+CREATE TRIGGER insertarusuarios after insert on login for each row insert into usuario_logeado (PERSONA) VALUES (NEW.PERSONA);
+
+CREATE TRIGGER eliminarpersona AFTER DELETE on login
+FOR EACH ROW
+DELETE FROM usuario_logeado
+    WHERE usuario_logeado.PERSONA = old.PERSONA
+
+CREATE TRIGGER eliminarpersonalista before DELETE on login
+FOR EACH ROW
+insert into usuario_borrado (usuario,tipo,id,correo) values (old.PERSONA,old.TIPO,old.ID,old.CORREO);
+ 
+CREATE TRIGGER `borra` AFTER delete ON `mercancia` FOR EACH ROW delete from registro.carrito where registro.carrito.codigo_producto=old.code_producto    
