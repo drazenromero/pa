@@ -1,4 +1,9 @@
 <?php
+require '../vendor/autoload.php';
+use Mailgun\Mailgun;
+
+$mgClient = new Mailgun('key-cd190ac1f4e922df90ef2b3d0b120526');
+$domain = "sandbox8cdd6206cc3b4bb1a6eea3b10997deff.mailgun.org";
 $db_host="localhost";
 $db_nombre="registro";
 $db_usuario="root";
@@ -10,6 +15,7 @@ if(mysqli_connect_errno()){
 else{
 
 }
+
 mysqli_set_charset($conexion,"utf8");
 $persona = mysqli_real_escape_string($conexion, $_POST["usuario2"]);
 $consulta = "SELECT CORREO FROM login WHERE PERSONA='$persona'"; 
@@ -34,17 +40,12 @@ if(mysqli_num_rows($resultado)>0){
 		$clave = generarCodigo(10);
 		echo "$clave";
 		echo utf8_decode("Un código ha sido enviado a tu correo para crear una contraseña nueva")."<BR>";	
-		$destino= $correo;                                   //$correo;
-		$desde = "From: Drazen";
-		$asunto = "Recuperación de Contraseña";
-		$mensaje = "El código es '$clave'";
-		$correct = mail($destino, $asunto, $mensaje, $desde);
-		if ($correct == true){
-			echo "El correo ha sido enviado correctamente";
-		}
-		else{
-			echo "Ha habido un fallo al enviar el correo";
-		}
+		$result = $mgClient->sendMessage("$domain",
+          array('from'    => 'Mailgun Sandbox <postmaster@sandbox8cdd6206cc3b4bb1a6eea3b10997deff.mailgun.org>',
+                'to'      => 'drazen <drazenromero@gmail.com>',
+                'subject' => 'Hello drazen',
+                'text'    => 'Congratulations drazen, you just sent an email with Mailgun!  You are truly awesome! '));
+		
 	}	
 }
 else {
